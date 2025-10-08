@@ -24,10 +24,6 @@ import cis3334.java_sprint_1_fish_list.viewmodel.FishViewModel;
 import cis3334.java_sprint_1_fish_list.data.model.Fish;
 import cis3334.java_sprint_1_fish_list.data.firebase.FirebaseService;
 
-
-
-
-
 public class MainActivity extends AppCompatActivity {
 
     private FishViewModel fishViewModel;
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 3.5f
         );
 
-// Add to ViewModel list
+        // Add to ViewModel list
         fishViewModel.addFish(fish1);
         fishViewModel.addFish(fish2);
 
@@ -122,84 +118,76 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Adds a new fish to the list.
+     */
+    private void addNewFish() {
+        // Get input values
+        String species = speciesInput.getText().toString().trim();
+        String date = dateInput.getText().toString().trim();
+        String location = locationInput.getText().toString().trim();
+        String weather = weatherInput.getText().toString().trim();
+        float battleRating = battleRatingInput.getRating();
 
+        // Convert weight and length to strings due to app crash prevention if user did not enter a numerical value.
+        String weightStr = weightInput.getText().toString().trim();
+        String lengthStr = lengthInput.getText().toString().trim();
 
-
-        /**
-         * Adds a new fish to the list.
-         */
-
-
-        private void addNewFish() {
-            // Get input values
-            String species = speciesInput.getText().toString().trim();
-            String date = dateInput.getText().toString().trim();
-            String location = locationInput.getText().toString().trim();
-            String weather = weatherInput.getText().toString().trim();
-            float battleRating = battleRatingInput.getRating();
-
-            // Convert weight and length to strings due to app crash prevention if user did not enter a numerical value.
-            String weightStr = weightInput.getText().toString().trim();
-            String lengthStr = lengthInput.getText().toString().trim();
-
-            // Check for empty fields
-            if (species.isEmpty() || date.isEmpty() || weightStr.isEmpty() || lengthStr.isEmpty() || location.isEmpty() || weather.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Convert weight and length to doubles
-            double weight;
-            double length;
-            try {
-                weight = Double.parseDouble(weightStr);
-                length = Double.parseDouble(lengthStr);
-
-                // Error checking for if the user incorrectly put in the length and weight values.
-            } catch (NumberFormatException e) {
-                Toast.makeText(this, "Please enter numerical values for weight and length.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Create new fish object
-            Fish newFish = new Fish(
-                    UUID.randomUUID().toString(),
-                    species,
-                    date,
-                    weight,
-                    length,
-                    location,
-                    weather,
-                    battleRating
-            );
-
-            // Add new fish to the list
-            fishViewModel.addFish(newFish);
-
-            // Clear inputs after addition of new fish
-            speciesInput.setText("");
-            dateInput.setText("");
-            weightInput.setText("");
-            lengthInput.setText("");
-            locationInput.setText("");
-            weatherInput.setText("");
-            battleRatingInput.setRating(0);
-
-            // Toast (Pop-Up Message!) For Insertion
-            CharSequence text2 = "Added Fish!";
-            int duration2 = Toast.LENGTH_SHORT;
-            Toast toast2 = Toast.makeText(this, text2, duration2);
-            toast2.show();
-
+        // Check for empty fields
+        if (species.isEmpty() || date.isEmpty() || weightStr.isEmpty() || lengthStr.isEmpty() || location.isEmpty() || weather.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
+            return;
         }
 
+        // Convert weight and length to doubles
+        double weight;
+        double length;
+        try {
+            weight = Double.parseDouble(weightStr);
+            length = Double.parseDouble(lengthStr);
+
+            // Error checking for if the user incorrectly put in the length and weight values.
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Please enter numerical values for weight and length.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Create new fish object
+        Fish newFish = new Fish(
+                UUID.randomUUID().toString(),
+                species,
+                date,
+                weight,
+                length,
+                location,
+                weather,
+                battleRating
+        );
+
+        // Add new fish to the list
+        fishViewModel.addFish(newFish);
+
+        // Clear inputs after addition of new fish
+        speciesInput.setText("");
+        dateInput.setText("");
+        weightInput.setText("");
+        lengthInput.setText("");
+        locationInput.setText("");
+        weatherInput.setText("");
+        battleRatingInput.setRating(0);
+
+        // Toast (Pop-Up Message!) For Insertion
+        CharSequence text2 = "Added Fish!";
+        int duration2 = Toast.LENGTH_SHORT;
+        Toast toast2 = Toast.makeText(this, text2, duration2);
+        toast2.show();
+
+    }
 
 
-
-        /**
-         * Sets up the RecyclerView.
-         */
-
+    /**
+     * Sets up the RecyclerView.
+     */
     private void setupRecyclerView() {
         fishRecyclerView = findViewById(R.id.fishRecyclerView);
         fishRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -212,6 +200,9 @@ public class MainActivity extends AppCompatActivity {
         fishRecyclerView.setAdapter(adapter);
     }
 
+    /**
+     * Sets up the LiveData observer.
+     */
     private void setupLiveDataObserver() {
         fishViewModel.getFishList().observe(this, fishList -> {
             adapter.submitList(new ArrayList<>(fishList));
