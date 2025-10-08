@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/primaryLayout"
+        android:layout_width="411dp"
+        android:layout_height="738dp"
+        android:background="#e7feff"
+        android:orientation="vertical"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <TextView
+            android:id="@+id/mainTitle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="8dp"
+            android:background="#80DEEE"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Fish List"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/inputSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#add8e6"
+            android:orientation="vertical"
+            android:paddingTop="4dp">
+
+            <LinearLayout
+                android:id="@+id/firstRowInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#add8e6"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <EditText
+                    android:id="@+id/speciesInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/edit_text"
+                    android:ems="10"
+                    android:gravity="left|bottom"
+                    android:hint="Species"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/dateInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/edit_text"
+                    android:ems="10"
+                    android:gravity="left|bottom"
+                    android:hint="Date"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/secondRowInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#add8e6"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <EditText
+                    android:id="@+id/weightInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/edit_text"
+                    android:ems="10"
+                    android:gravity="left|bottom"
+                    android:hint="Weight (Lbs)"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/lengthInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/edit_text"
+                    android:ems="10"
+                    android:gravity="left|bottom"
+                    android:hint="Length (In)"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/thirdRowInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#add8e6"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <EditText
+                    android:id="@+id/locationInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/edit_text"
+                    android:ems="10"
+                    android:gravity="left|bottom"
+                    android:hint="Location"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/weatherInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:drawable/edit_text"
+                    android:ems="10"
+                    android:gravity="left|bottom"
+                    android:hint="Weather"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/battleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="#add8e6"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="Battle (How Difficult Was the Catch?): "
+                    android:textColor="#000000"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/battleRatingInput"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:progressTint="#FFD700"
+                    android:rating="3"
+                    android:scaleX="1.1"
+                    android:scaleY="1.1"
+                    android:stepSize="1" />
+
+
+            </LinearLayout>
+
+            <!-- Clear Button -->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/insertFishButton"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:backgroundTint="#80DEEE"
+                android:text="Insert Fish"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/clearFishButton"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:backgroundTint="#80DEEE"
+                android:text="Clear All Fish"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fishRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="4dp" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

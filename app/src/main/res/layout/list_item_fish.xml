@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    app:strokeColor="#B3E5FC"
+    app:strokeWidth="1dp">
+
+    <!-- Overall Card Layout -->
+    <LinearLayout
+        android:id="@+id/primaryLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Species Layout (Ensures the Fish Emoji and Text are Aligned) -->
+        <LinearLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fishEmoji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="🐟"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/speciesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rainbow Trout"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Date Layout Within Primary Layout-->
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:textColor="#444444"
+            android:textSize="13sp"
+            android:textStyle="italic"
+            tools:text="Date: Sept 18, 2025" />
+
+        <!-- Weight & Length Within Primary Layout -->
+        <LinearLayout
+            android:id="@+id/weightAndLengthLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/weightText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#444444"
+                android:textSize="13sp"
+                tools:text="Weight: 4.2 lbs" />
+
+            <TextView
+                android:id="@+id/lengthText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#444444"
+                android:textSize="13sp"
+                tools:text="Length: 22 in" />
+        </LinearLayout>
+
+        <!-- Location & Weather Within Primary Layout-->
+        <LinearLayout
+            android:id="@+id/locationAndWeatherLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/locationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#444444"
+                android:textSize="13sp"
+                tools:text="Location: Lake Superior" />
+
+            <TextView
+                android:id="@+id/weatherText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#444444"
+                android:textSize="13sp"
+                tools:text="Weather: Sunny, 72°F" />
+        </LinearLayout>
+
+        <!-- Battle Rating Within Primary Layout -->
+        <LinearLayout
+            android:id="@+id/battleTextAndStarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/battleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:text="Battle Rating:  "
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/battleRatingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="#FFD700"
+                android:rating="4"
+                android:scaleX="1.4"
+                android:scaleY="1.4"
+                android:stepSize="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</com.google.android.material.card.MaterialCardView>
