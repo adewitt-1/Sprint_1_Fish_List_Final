@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/primaryLayout"
-        android:layout_width="411dp"
-        android:layout_height="738dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#e7feff"
         android:orientation="vertical"
         android:padding="12dp"
@@ -20,10 +20,10 @@
         app:layout_constraintVertical_bias="0.0">
 
 
-        <TextView
+    <TextView
             android:id="@+id/mainTitle"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:background="#80DEEE"
             android:gravity="center"
@@ -195,7 +195,7 @@
 
             <Button
                 android:id="@+id/insertFishButton"
-                android:layout_width="175dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:backgroundTint="#80DEEE"
@@ -205,7 +205,7 @@
 
             <Button
                 android:id="@+id/clearFishButton"
-                android:layout_width="175dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:backgroundTint="#80DEEE"

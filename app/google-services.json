@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "740383961171",
+    "project_id": "final-sprint-1-fish-list",
+    "storage_bucket": "final-sprint-1-fish-list.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740383961171:android:76ba87986f723cd83616a6",
+        "android_client_info": {
+          "package_name": "cis3334.java_sprint_1_fish_list"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvmJ12Ewajn4fJYWU54wY7A0Fh7Fn17S8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
