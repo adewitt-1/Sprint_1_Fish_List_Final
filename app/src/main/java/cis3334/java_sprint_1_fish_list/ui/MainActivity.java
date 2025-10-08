@@ -21,6 +21,8 @@ import cis3334.java_sprint_1_fish_list.R;
 import cis3334.java_sprint_1_fish_list.ui.FishAdapter;
 import cis3334.java_sprint_1_fish_list.viewmodel.FishViewModel;
 import cis3334.java_sprint_1_fish_list.data.model.Fish;
+import cis3334.java_sprint_1_fish_list.data.firebase.FirebaseService;
+
 
 
 
@@ -52,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*
+
+
+
+
+
 
         // ViewModel
         fishViewModel = new ViewModelProvider(this).get(FishViewModel.class);
@@ -86,9 +95,15 @@ public class MainActivity extends AppCompatActivity {
         setupLiveDataObserver();
     }
 
+
+         */
+
+
         /**
          * Adds a new fish to the list.
          */
+
+        /*
         private void addNewFish() {
             // Get input values
             String species = speciesInput.getText().toString().trim();
@@ -152,9 +167,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    /**
-     * Sets up the RecyclerView.
-     */
+
+         */
+
+        /**
+         * Sets up the RecyclerView.
+         */
+
+    /*
     private void setupRecyclerView() {
         fishRecyclerView = findViewById(R.id.fishRecyclerView);
         fishRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -162,13 +182,21 @@ public class MainActivity extends AppCompatActivity {
         fishRecyclerView.setAdapter(adapter);
     }
 
-    /**
-     * Sets up the LiveData observer.
+
      */
+
+        /**
+         * Sets up the LiveData observer.
+         */
+
+    /*
     private void setupLiveDataObserver() {
         fishViewModel.getFishList().observe(this, fishList -> {
             adapter.updateList(fishList);
         });
 
+    }
+
+     */
     }
 }
