@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import cis3334.java_sprint_1_fish_list.R;
@@ -55,15 +56,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
-
-
-
-
-
 
         // ViewModel
         fishViewModel = new ViewModelProvider(this).get(FishViewModel.class);
+
+        /**
+         * TEMP HARD CODED
+         */
+
+        // --- Add these lines below ---
+        Fish fish1 = new Fish(
+                UUID.randomUUID().toString(),
+                "Rainbow Trout",
+                "2025-05-12",
+                2.5,
+                18.0,
+                "Lake Superior",
+                "Sunny",
+                4.5f
+        );
+
+        Fish fish2 = new Fish(
+                UUID.randomUUID().toString(),
+                "Largemouth Bass",
+                "2025-06-01",
+                3.2,
+                20.0,
+                "Mississippi River",
+                "Cloudy",
+                3.5f
+        );
+
+// Add to ViewModel list
+        fishViewModel.addFish(fish1);
+        fishViewModel.addFish(fish2);
 
         // Initializing inputs
         speciesInput = findViewById(R.id.speciesInput);
@@ -96,14 +122,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-         */
+
 
 
         /**
          * Adds a new fish to the list.
          */
 
-        /*
+
         private void addNewFish() {
             // Get input values
             String species = speciesInput.getText().toString().trim();
@@ -168,35 +194,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-         */
+
 
         /**
          * Sets up the RecyclerView.
          */
 
-    /*
     private void setupRecyclerView() {
         fishRecyclerView = findViewById(R.id.fishRecyclerView);
         fishRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new FishAdapter();
+
+        // Provide a simple click listener to avoid null
+        adapter = new FishAdapter(fish -> {
+            Toast.makeText(this, "Clicked: " + fish.getSpecies(), Toast.LENGTH_SHORT).show();
+        });
+
         fishRecyclerView.setAdapter(adapter);
     }
 
-
-     */
-
-        /**
-         * Sets up the LiveData observer.
-         */
-
-    /*
     private void setupLiveDataObserver() {
         fishViewModel.getFishList().observe(this, fishList -> {
-            adapter.updateList(fishList);
+            adapter.submitList(new ArrayList<>(fishList));
         });
-
     }
 
-     */
-    }
+
+
+
 }
