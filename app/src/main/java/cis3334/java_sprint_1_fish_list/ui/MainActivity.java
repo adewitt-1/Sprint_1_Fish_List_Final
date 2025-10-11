@@ -6,11 +6,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,13 +15,17 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import cis3334.java_sprint_1_fish_list.R;
-import cis3334.java_sprint_1_fish_list.ui.FishAdapter;
 import cis3334.java_sprint_1_fish_list.viewmodel.FishViewModel;
 import cis3334.java_sprint_1_fish_list.data.model.Fish;
-import cis3334.java_sprint_1_fish_list.data.firebase.FirebaseService;
 
+
+/**
+ * Main Activity for the Fish List app. Sets up the UI environment, initializes variables, creates
+ * the RecyclerView, and the LiveData observer. Updates recyclerview through the FishViewModel.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    // Ids for the UI elements
     private FishViewModel fishViewModel;
     private FishAdapter adapter;
     private EditText speciesInput;
@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Called when the activity is first created.
      *
-     * @param savedInstanceState If the activity is being re-initialized after
-     *     previously being shut down then this Bundle contains the data it most
-     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     * @param savedInstanceState Contains data if shut down and re-created.
      *
      */
     @Override
@@ -53,41 +51,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        // ViewModel
+        // ViewModel (Connection between UI and Firebase)
         fishViewModel = new ViewModelProvider(this).get(FishViewModel.class);
 
-        /**
-         * TEMP HARD CODED
-         */
-
-        // --- Add these lines below ---
-        Fish fish1 = new Fish(
-                UUID.randomUUID().toString(),
-                "Rainbow Trout",
-                "2025-05-12",
-                2.5,
-                18.0,
-                "Lake Superior",
-                "Sunny",
-                4.5f
-        );
-
-        Fish fish2 = new Fish(
-                UUID.randomUUID().toString(),
-                "Largemouth Bass",
-                "2025-06-01",
-                3.2,
-                20.0,
-                "Mississippi River",
-                "Cloudy",
-                3.5f
-        );
-
-        // Add to ViewModel list
-        fishViewModel.addFish(fish1);
-        fishViewModel.addFish(fish2);
-
-        // Initializing inputs
+        // Initializing user input fields and buttons
         speciesInput = findViewById(R.id.speciesInput);
         dateInput = findViewById(R.id.dateInput);
         weightInput = findViewById(R.id.weightInput);
@@ -98,19 +65,13 @@ public class MainActivity extends AppCompatActivity {
         insertFishButton = findViewById(R.id.insertFishButton);
         clearFishButton = findViewById(R.id.clearFishButton);
 
-        // Insert Fish Button
-        insertFishButton.setOnClickListener(v -> addNewFish());
+        // Makes the insertFishButton clickable
+        // Calls the addNewFish() method when the button is clicked
+        insertFishButton.setOnClickListener(v -> addFish());
 
-        // Clear Fish Button
-        clearFishButton.setOnClickListener(v -> {
-            fishViewModel.clearFishList();
-
-            // Toast (Pop-Up Message!) For Clearing
-            CharSequence text1 = "Cleared Fish!";
-            int duration1 = Toast.LENGTH_SHORT;
-            Toast toast1 = Toast.makeText(this, text1, duration1);
-            toast1.show();
-        });
+        // Makes the clearFishButton clickable
+        // Calls the clearFish() method when the button is clicked
+        clearFishButton.setOnClickListener(v -> clearFish());
 
         // Run setup methods
         setupRecyclerView();
@@ -121,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Adds a new fish to the list.
      */
-    private void addNewFish() {
+    private void addFish() {
         // Get input values
         String species = speciesInput.getText().toString().trim();
         String date = dateInput.getText().toString().trim();
@@ -139,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // Convert weight and length to doubles
+        // Convert weight and length back to doubles
         double weight;
         double length;
         try {
@@ -164,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 battleRating
         );
 
-        // Add new fish to the list
+        // Add new fish to the list for fishViewModel to handle
         fishViewModel.addFish(newFish);
 
         // Clear inputs after addition of new fish
@@ -184,24 +145,43 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Clears the fish list.
+     */
+    private void clearFish() {
+        fishViewModel.clearFishList();
+
+        // Toast (Pop-Up Message!) For Clearing
+        CharSequence text1 = "Cleared Fish!";
+        int duration1 = Toast.LENGTH_SHORT;
+        Toast toast1 = Toast.makeText(this, text1, duration1);
+        toast1.show();
+    }
+
 
     /**
-     * Sets up the RecyclerView.
+     * Sets up the RecyclerView. Think of it as a dining area with limited number
+     * of tables (cards). There many be a lot of people, but only a limited number
+     * of tables can be used at once. Once people leave, new people can sit.
      */
     private void setupRecyclerView() {
+        // Find the RecyclerView in the layout
         fishRecyclerView = findViewById(R.id.fishRecyclerView);
         fishRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Provide a simple click listener to avoid null
+        // Otherwise, app crashes when clicking on a fish.
         adapter = new FishAdapter(fish -> {
-            Toast.makeText(this, "Clicked: " + fish.getSpecies(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Great Catch! This is an awesome " + fish.getSpecies() + "!", Toast.LENGTH_SHORT).show();
         });
 
+        // Set the adapter for the RecyclerView
         fishRecyclerView.setAdapter(adapter);
     }
 
     /**
-     * Sets up the LiveData observer.
+     * Sets up the LiveData observer. It watches the LiveData variable in the FishViewModel
+     * and updates the RecyclerView when the data changes.
      */
     private void setupLiveDataObserver() {
         fishViewModel.getFishList().observe(this, fishList -> {

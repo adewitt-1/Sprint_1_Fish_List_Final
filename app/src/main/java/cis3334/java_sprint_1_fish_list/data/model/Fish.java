@@ -1,5 +1,8 @@
 package cis3334.java_sprint_1_fish_list.data.model;
 
+/**
+ * Fish Class for the Fish List app. Stores all the information about a fish.
+ */
 public class Fish {
     private String id;
     private String species;
@@ -10,12 +13,24 @@ public class Fish {
     private double length;
     private float battleRating;
 
-    // Empty Constructor is needed for Firestore:
+    /**
+     * Default Constructor -- Empty for Firebase requirements
+      */
     public Fish() {
 
     }
 
-    // Primary Constructor
+    /**
+     * Constructor for the Fish class.
+     * @param id Unique identifier for the fish.
+     * @param species Species of the fish.
+     * @param date Date of the catch.
+     * @param weight Weight of the fish.
+     * @param length Length of the fish.
+     * @param location Location of the catch.
+     * @param weather Weather during the time of catch.
+     * @param battleRating How difficult the catch was.
+     */
     public Fish(String id, String species, String date, double weight, double length,
                 String location, String weather, float battleRating) {
         this.id = id;
